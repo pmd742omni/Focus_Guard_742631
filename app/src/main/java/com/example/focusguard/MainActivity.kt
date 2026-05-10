@@ -96,8 +96,7 @@ fun MainApp(viewModel: FocusViewModel) {
                 AdminPanelScreen(viewModel)
             }
             composable("settings") {
-                // Settings screen not implemented yet, just a placeholder
-                Text("Settings Screen")
+                SettingsScreen(viewModel)
             }
             composable("color_picker") {
                 ColorPickerScreen(viewModel, onBack = { navController.popBackStack() })
