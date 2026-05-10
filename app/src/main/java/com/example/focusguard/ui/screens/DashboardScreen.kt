@@ -7,12 +7,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Palette
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.focusguard.ui.FocusViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -60,7 +61,7 @@ fun DashboardScreen(viewModel: FocusViewModel, onNavigateToColorPicker: () -> Un
                 ListItem(
                     headlineContent = { Text(request.appName) },
                     supportingContent = { Text("${request.durationMinutes} mins - ${request.status}") },
-                    trailingContent = { Text(java.text.SimpleDateFormat("HH:mm").format(request.timestamp)) }
+                    trailingContent = { Text(SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date(request.timestamp))) }
                 )
                 HorizontalDivider()
             }

@@ -1,5 +1,6 @@
 package com.example.focusguard.ui.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -31,7 +32,7 @@ fun ColorPickerScreen(viewModel: FocusViewModel, onBack: () -> Unit) {
             Spacer(modifier = Modifier.height(16.dp))
             
             LazyHorizontalGrid(
-                rows = GridCells.Fixed(4), // 4 rows to make it look like a grid
+                rows = GridCells.Fixed(4),
                 modifier = Modifier.height(240.dp).fillMaxWidth(),
                 contentPadding = PaddingValues(4.dp),
                 horizontalArrangement = Arrangement.spacedBy(4.dp),
@@ -60,5 +61,3 @@ fun ColorPickerScreen(viewModel: FocusViewModel, onBack: () -> Unit) {
         }
     }
 }
-
-import androidx.compose.foundation.background
