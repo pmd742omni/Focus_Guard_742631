@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.font.FontWeight
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -79,16 +80,37 @@ fun MainApp(viewModel: FocusViewModel) {
                 NavigationBar(
                     modifier = Modifier
                         .clip(RoundedCornerShape(32.dp))
-                        .fillMaxWidth(0.9f),
+                        .fillMaxWidth(0.95f)
+                        .height(72.dp),
                     containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp),
-                    tonalElevation = 8.dp
+                    tonalElevation = 8.dp,
+                    windowInsets = WindowInsets(0, 0, 0, 0)
                 ) {
                     items.forEach { item ->
                         val selected = currentDestination?.hierarchy?.any { it.route == item.route } == true
                         NavigationBarItem(
-                            icon = { Icon(item.icon, item.label) },
-                            label = { Text(item.label) },
+                            icon = { 
+                                Icon(
+                                    imageVector = item.icon, 
+                                    contentDescription = item.label,
+                                    modifier = Modifier.size(24.dp)
+                                ) 
+                            },
+                            label = { 
+                                Text(
+                                    text = item.label,
+                                    style = MaterialTheme.typography.labelSmall,
+                                    fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium
+                                ) 
+                            },
                             selected = selected,
+                            colors = NavigationBarItemDefaults.colors(
+                                selectedIconColor = MaterialTheme.colorScheme.primary,
+                                unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                selectedTextColor = MaterialTheme.colorScheme.primary,
+                                unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                indicatorColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f)
+                            ),
                             onClick = {
                                 navController.navigate(item.route) {
                                     popUpTo(navController.graph.findStartDestination().id) {
