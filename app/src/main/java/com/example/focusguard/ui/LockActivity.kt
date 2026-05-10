@@ -32,6 +32,10 @@ class LockActivity : ComponentActivity() {
     }
 }
 
+import androidx.compose.ui.draw.blur
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.TileMode
+
 @Composable
 fun LockScreen(packageName: String, onAuthorized: () -> Unit) {
     var password by remember { mutableStateOf("") }
@@ -42,12 +46,24 @@ fun LockScreen(packageName: String, onAuthorized: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Black.copy(alpha = 0.7f)),
+            .background(Color.Black.copy(alpha = 0.5f))
+            .blur(10.dp),
         contentAlignment = Alignment.Center
     ) {
+        // We can't actually blur the content behind the activity easily without a screenshot 
+        // but this adds the effect to the overlay itself.
+        // For a full system overlay blur, it's more complex.
+    }
+    
+    // UI elements on top of the blur
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(24.dp)
+            modifier = Modifier
+                .padding(24.dp)
+                .background(Color.White.copy(alpha = 0.1f), shape = RoundedCornerShape(16.dp))
+                .border(1.dp, Color.White.copy(alpha = 0.2f), shape = RoundedCornerShape(16.dp))
+                .padding(24.dp)
         ) {
             Text(
                 "FocusGuard",
