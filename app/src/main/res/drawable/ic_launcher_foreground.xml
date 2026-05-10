@@ -8,8 +8,7 @@
     <!-- Metallic Ring -->
     <path
         android:pathData="M54,54m-42,0a42,42 0,1 1,84 0a42,42 0,1 1,-84 0"
-        android:strokeWidth="5"
-        android:strokeColor="#C0C0C0">
+        android:strokeWidth="5">
         <aapt:attr name="android:strokeColor">
             <gradient
                 android:startX="15"

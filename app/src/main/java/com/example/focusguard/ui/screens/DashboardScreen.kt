@@ -24,7 +24,14 @@ fun DashboardScreen(viewModel: FocusViewModel, onNavigateToColorPicker: () -> Un
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("FocusGuard Dashboard") })
+            CenterAlignedTopAppBar(
+                title = { 
+                    Text(
+                        "Focus Guard Dashboard",
+                        fontWeight = FontWeight.Bold
+                    ) 
+                }
+            )
         },
         floatingActionButton = {
             FloatingActionButton(onClick = onNavigateToColorPicker) {
