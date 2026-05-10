@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Focus Guard</string>
+    <string name="accessibility_description">Monitors app launches to restrict access based on parent settings.</string>
 </resources>
